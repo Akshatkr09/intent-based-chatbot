@@ -80,9 +80,9 @@ model.fit(X_train, y_train)
 
 def chatbot_response(user_input):
     user_input = user_input.lower()
-    user_input_vectorize = vectorize.transform([user_input])
-    predicted_index = model.predict(user_input_vectorize)[0]
-    predict_label = index_to_label[predicted_index]
+    user_input_vectorized = vectorizer.transform([user_input])  # Use vectorizer here
+    predicted_index = model.predict(user_input_vectorized)[0]
+    predicted_label = index_to_label[predicted_index]
     return random.choice(responses.get(predicted_label, ["Sorry, I didn't understand that."]))
 
 st.title("Intent-Based Chatbot")
