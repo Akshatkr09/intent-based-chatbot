@@ -17,7 +17,7 @@ import streamlit as st
 
 
 # Step 1: Load the intents dataset
-with open(r'C:\Users\KIIT\AICTE\intents.json') as file:
+with open('intents.json') as file:
     data = json.load(file)
 
 
