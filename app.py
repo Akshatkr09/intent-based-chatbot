@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[7]:
-
-
 import os
 import json
 import random
@@ -13,21 +7,14 @@ from sklearn.linear_model import LogisticRegression
 import streamlit as st 
 
 
-# In[9]:
-
 
 # Step 1: Load the intents dataset
 with open('intents.json') as file:
     data = json.load(file)
 
 
-# In[10]:
-
 
 print(data)
-
-
-# In[11]:
 
 
 # Step 2: Preprocess the data
@@ -42,16 +29,9 @@ for intent in data:
     responses[intent['tag']] = intent['responses']
 
 
-# In[12]:
-
-
 # Vectorize the patterns using TfidfVectorizer
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(patterns)
-
-
-# In[13]:
-
 
 # Encode labels
 unique_labels = list(set(labels))
@@ -60,14 +40,8 @@ index_to_label = {idx: label for label, idx in label_to_index.items()}
 y = [label_to_index[label] for label in labels]
 
 
-# In[14]:
-
-
 # Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-
-# In[15]:
 
 
 # Step 3: Train a Logistic Regression model
@@ -75,7 +49,7 @@ model = LogisticRegression(max_iter=200)
 model.fit(X_train, y_train)
 
 
-# In[16]:
+
 
 
 def chatbot_response(user_input):
