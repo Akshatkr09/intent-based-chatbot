@@ -6,18 +6,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import streamlit as st 
 
-
-
-# Step 1: Load the intents dataset
+#Load the intents dataset
 with open('intents.json') as file:
     data = json.load(file)
 
-
-
 print(data)
 
-
-# Step 2: Preprocess the data
+#Preprocess the data
 patterns = []
 responses = {}
 labels = []
@@ -44,7 +39,7 @@ y = [label_to_index[label] for label in labels]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 
-# Step 3: Train a Logistic Regression model
+#Train a Logistic Regression model
 model = LogisticRegression(max_iter=200)
 model.fit(X_train, y_train)
 
@@ -54,7 +49,7 @@ model.fit(X_train, y_train)
 
 def chatbot_response(user_input):
     user_input = user_input.lower()
-    user_input_vectorized = vectorizer.transform([user_input])  # Use vectorizer here
+    user_input_vectorized = vectorizer.transform([user_input])
     predicted_index = model.predict(user_input_vectorized)[0]
     predicted_label = index_to_label[predicted_index]
     return random.choice(responses.get(predicted_label, ["Sorry, I didn't understand that."]))
